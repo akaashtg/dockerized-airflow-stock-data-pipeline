@@ -14,8 +14,9 @@ The pipeline:
 
 ---
 
-## Project Diagram
+## Data Pipeline Flow
 
+```mermaid
 flowchart LR
     A([Alpha Vantage API]):::external -->|Fetch JSON| B([fetch_stock_data]):::task
     B -->|Extract latest date & adjusted close| C([upsert_postgres]):::task
