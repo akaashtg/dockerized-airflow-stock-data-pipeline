@@ -16,18 +16,20 @@ The pipeline:
 
 ## Project Diagram
 
-```mermaid
 flowchart LR
-    A[Alpha Vantage API] -->|JSON Data| B[Airflow Task: fetch_stock_data]
-    B -->|Clean Data| C[Airflow Task: upsert_postgres]
-    C -->|Insert/Update| D[(CrateDB: sp500 Table)]
+    A([Alpha Vantage API]):::external -->|Fetch JSON| B([fetch_stock_data]):::task
+    B -->|Extract latest date & adjusted close| C([upsert_postgres]):::task
+    C -->|Upsert Rows| D[(CrateDB: sp500 Table]):::database
+
     subgraph Airflow
         B
         C
     end
-```
 
----
+    classDef external fill:#f9f,stroke:#333,stroke-width:1px;
+    classDef task fill:#bbf,stroke:#333,stroke-width:1px;
+    classDef database fill:#bfb,stroke:#333,stroke-width:1px;
+
 
 ## Project Contents
 
