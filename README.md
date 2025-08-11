@@ -1,4 +1,4 @@
-# dockerized-airflow-stock-data-pipeline
+# dockerized-stock-market-pipeline with Airflow & CrateDB
 
 
 ## Overview
